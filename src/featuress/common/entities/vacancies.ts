@@ -1,6 +1,8 @@
-import {Column, Entity} from "typeorm";
+import {Column, Entity, OneToMany} from "typeorm";
 import {BaseModel} from "@/core/base-model";
 import {vacancyType} from "@/core/enums/enums";
+import {Applications} from "@/featuress/common/entities/applications";
+import {application} from "express";
 
 
 @Entity('vacancies')
@@ -23,4 +25,7 @@ export class Vacancies extends BaseModel{
 
     @Column({type:"bool",default:true})
     isActive!:boolean
+
+    @OneToMany(()=>Applications,(application)=>application.vacancy)
+    applications!:Applications
 }

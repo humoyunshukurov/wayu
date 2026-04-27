@@ -1,6 +1,7 @@
-import {Column, Entity} from "typeorm";
+import {Column, Entity, JoinColumn, ManyToOne} from "typeorm";
 import {BaseModel} from "@/core/base-model";
 import {applicationStatus} from "@/core/enums/enums";
+import {Vacancies} from "@/featuress/common/entities/vacancies";
 
 
 @Entity('applications')
@@ -24,5 +25,8 @@ export class Applications extends BaseModel{
     @Column({type:"enum" ,enum:applicationStatus})
     status!:applicationStatus;
 
+    @ManyToOne(()=>Vacancies,(vacancy)=>vacancy.applications)
+    @JoinColumn({name:'vacancyId'})
+    vacancy!:Vacancies
 
 }
