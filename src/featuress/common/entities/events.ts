@@ -1,5 +1,6 @@
-import {Column, Entity} from "typeorm";
+import {Column, Entity, JoinColumn, ManyToOne} from "typeorm";
 import {BaseModel} from "@/core/base-model";
+import {EventCategories} from "@/featuress/common/entities/eventCategories";
 
 @Entity('events')
 export class Events extends BaseModel{
@@ -20,4 +21,8 @@ export class Events extends BaseModel{
 
     @Column({length:128})
     address!:string;
+
+    @ManyToOne(()=>EventCategories,(eventCategory)=>eventCategory.event)
+    @JoinColumn({name:'categoryId'})
+    eventCategory:EventCategories
 }

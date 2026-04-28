@@ -1,5 +1,7 @@
-import {Column, Entity} from "typeorm";
+import {Column, Entity, JoinColumn, ManyToOne} from "typeorm";
 import {BaseModel} from "@/core/base-model";
+import {Countries} from "@/featuress/common/entities/countries";
+import {Representatives} from "@/featuress/common/entities/representatives";
 
 @Entity('branches')
 export class Branch extends BaseModel{
@@ -18,5 +20,11 @@ export class Branch extends BaseModel{
     @Column({type:"decimal",precision:10, scale:7})
     phoneNumber!:number
 
+    @ManyToOne(()=>Countries,(country)=>country.branch)
+    @JoinColumn({name:'countryId'})
+    country!:Countries
 
+    @ManyToOne(()=>Representatives,(representation)=>representation.branch)
+    @JoinColumn({name:'representativeId'})
+    representative!:Representatives
 }

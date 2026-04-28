@@ -1,8 +1,9 @@
-import {Column, Entity} from "typeorm";
+import {Column, Entity, OneToMany} from "typeorm";
 import {BaseModel} from "@/core/base-model";
+import {Branch} from "@/featuress/common/entities/branches";
 
-@Entity('resresentatives')
-export class Resresentatives extends BaseModel{
+@Entity('representatives')
+export class Representatives extends BaseModel{
 
     @Column({length:64})
     fullName!:string;
@@ -18,5 +19,8 @@ export class Resresentatives extends BaseModel{
 
     @Column({type:"text"})
     resume!:string;
+
+    @OneToMany(()=>Branch,(branch)=>branch.representative)
+    branch!:Branch
 }
 
