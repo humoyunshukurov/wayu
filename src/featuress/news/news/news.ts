@@ -19,6 +19,9 @@ export class News extends BaseModel{
     @Column({type:"text"})
     content!:string;
 
+    @Column({ nullable: true })
+    description: string;
+
     @ManyToOne(()=>NewsCategories,(newsCategory)=>newsCategory.news)
     @JoinColumn({name:'NewsCategoriesId'})
     newsCategory:NewsCategories;

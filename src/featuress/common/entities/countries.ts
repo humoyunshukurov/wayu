@@ -1,7 +1,7 @@
 import {BaseModel} from "@/core/base-model";
 import {Column, Entity, OneToMany} from "typeorm";
 import {Branch} from "@/featuress/common/entities/branches";
-import {News} from "@/featuress/common/entities/news";
+import {News} from "@/featuress/news/news/news";
 
 
 @Entity('socialLinks')
