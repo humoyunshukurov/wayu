@@ -6,7 +6,7 @@ import type {Relation} from "typeorm";
 @Entity('events')
 export class EventEntity extends BaseModel{
     @Column({type:"int"})
-    categoryId:number;
+    categoryId!:number;
 
     @Column({length:256})
     title!:string;
@@ -25,5 +25,6 @@ export class EventEntity extends BaseModel{
 
     @ManyToOne(()=>EventCategoriesEntity,(eventCategory)=>eventCategory.event)
     @JoinColumn({name:'categoryId'})
-    eventCategory:Relation <EventCategoriesEntity>
+    eventCategory!:Relation <EventCategoriesEntity>
+    category: EventCategoriesEntity;
 }

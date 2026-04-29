@@ -1,6 +1,6 @@
 import {Column, Entity, JoinColumn, ManyToOne} from "typeorm";
 import {BaseModel} from "@/core/base-model";
-import {Faqs} from "@/features/common/entities/faqs";
+import {FaqsEntity} from "@/features/common/entities/faqs.entity";
 import {Tags} from "@/features/common/entities/tags";
 import type {Relation} from "typeorm";
 
@@ -12,9 +12,9 @@ export class FaqsTags extends BaseModel {
     @Column({type: "number"})
     tagId!: number;
 
-    @ManyToOne(() => Faqs, (faq) => faq.faqTags)
+    @ManyToOne(() => FaqsEntity, (faq) => faq.faqTags)
     @JoinColumn({name: 'faqId'})
-    faqs: Relation<Faqs>
+    faqs: Relation<FaqsEntity>
 
     @ManyToOne(() => Tags, (tag) => tag.faqtags)
     @JoinColumn({name: 'tagId'})

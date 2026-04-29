@@ -4,7 +4,7 @@ import {FaqsTags} from "@/features/common/entities/faqsTags";
 import type {Relation} from "typeorm";
 
 @Entity('faqs')
-export class Faqs extends BaseModel{
+export class FaqsEntity extends BaseModel{
 
     @Column({length:256})
     question!:string
