@@ -2,7 +2,7 @@ import {Column, Entity} from "typeorm";
 import {BaseModel} from "@/core/base-model";
 
 @Entity('staticInfo')
-export class StaticInfo  extends BaseModel{
+export class StaticInfoEntity extends BaseModel{
     @Column({length:128 ,nullable:true})
     appStoreLink!:string
 

@@ -1,6 +1,6 @@
 import {Column, Entity, OneToMany} from "typeorm";
 import {BaseModel} from "@/core/base-model";
-import {FaqsTags} from "@/features/common/entities/faqsTags";
+import {FaqsTagsEntity} from "@/features/common/entities/faqsTags.entity";
 import type {Relation} from "typeorm";
 
 @Entity('faqs')
@@ -12,7 +12,7 @@ export class FaqsEntity extends BaseModel{
     @Column({length:512})
     answer!:string
 
-    @OneToMany(()=>FaqsTags,(faqTag)=>faqTag.faqs)
-    faqTags!:Relation <FaqsTags>
+    @OneToMany(()=>FaqsTagsEntity,(faqTag)=>faqTag.faqs)
+    faqTags!:Relation <FaqsTagsEntity>
 
 }

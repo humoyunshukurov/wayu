@@ -3,7 +3,7 @@ import {BaseModel} from "@/core/base-model";
 import {questionStatus} from "@/core/enums/enums";
 
 @Entity('questions')
-export class Questions extends BaseModel{
+export class QuestionsEntity extends BaseModel{
     @Column({length:64})
     fullName!:string
 

@@ -3,7 +3,7 @@ import {plainToInstance} from "class-transformer";
 
 import {GetAllCountriesQuery} from "./get-all-countries.query";
 import {GetAllCountriesResponse} from "./get-all-countries.response";
-import {CountriesEntity} from "@/features/content/countries/countries.entity";
+import {CountriesEntity} from "@/features/common/entities/countries.entity";
 
 @QueryHandler(GetAllCountriesQuery)
 export class GetAllCountriesHandler implements IQueryHandler<GetAllCountriesQuery> {

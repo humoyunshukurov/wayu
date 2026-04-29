@@ -1,13 +1,13 @@
 import {Column, Entity, OneToMany} from "typeorm";
 import {BaseModel} from "@/core/base-model";
-import {Books} from "@/features/common/entities/books";
+import {BooksEntity} from "@/features/common/entities/books.entity";
 import type {Relation} from "typeorm";
 
 @Entity('authors')
-export class Authors extends BaseModel{
+export class AuthorsEntity extends BaseModel{
     @Column({length:64})
     fullName!:string
 
-    @OneToMany(()=>Books,(book)=>book.authors)
-    books!:Relation <Books>
+    @OneToMany(()=>BooksEntity,(book)=>book.authors)
+    books!:Relation <BooksEntity>
 }

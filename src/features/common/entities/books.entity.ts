@@ -1,12 +1,12 @@
 import {Column, Entity, JoinColumn, ManyToOne} from "typeorm";
-import {BaseModel} from "@/core/base-model";
-import {Authors} from "@/features/common/entities/authors";
-import {BookCategories} from "@/features/common/entities/bookCategories";
+import {AuthorsEntity} from "@/features/common/entities/authors.entity";
+import {BookCategoriesEntity} from "@/features/common/entities/bookCategories.entity";
 import type {Relation} from "typeorm";
+import {BaseModel} from "@/core/base-model";
 
 
 @Entity('books')
-export class Books extends BaseModel{
+export class BooksEntity extends BaseModel{
 
     @Column({type:"int"})
     authorId!: number
@@ -33,11 +33,11 @@ export class Books extends BaseModel{
     year: number
 
 
-    @ManyToOne(()=>Authors,(author)=>author.books)
+    @ManyToOne(()=>AuthorsEntity,(author)=>author.books)
     @JoinColumn({name:'authorId'})
-    authors:Relation <Authors>
+    authors:Relation <AuthorsEntity>
 
-    @ManyToOne(()=>BookCategories,(category)=>category.books)
+    @ManyToOne(()=>BookCategoriesEntity,(category)=>category.books)
     @JoinColumn({name:'CategoryId'})
-    category:Relation <BookCategories>
+    category:Relation <BookCategoriesEntity>
 }

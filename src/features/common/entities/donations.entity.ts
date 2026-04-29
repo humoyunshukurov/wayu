@@ -3,7 +3,7 @@ import {BaseModel} from "@/core/base-model";
 
 @Entity('donations')
 
-export class Donations extends BaseModel{
+export class DonationsEntity extends BaseModel{
     @Column({type:"decimal",precision:10,scale:2})
     amount!:number;
 

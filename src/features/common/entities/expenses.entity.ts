@@ -1,12 +1,14 @@
-import {BaseEntity, Column, Entity} from "typeorm";
+import { Column, Entity} from "typeorm";
+import {BaseModel} from "@/core/base-model";
 
 @Entity('expenses')
 
-export class Expense extends BaseEntity{
+export class ExpensesEntity extends BaseModel{
+
     @Column({type:"decimal",precision:12,scale:2})
     amount!:number;
 
-    @Column({type:"datetime"})
+    @Column({type:"timestamp"})
     date!:Date
 
     @Column({length:256})

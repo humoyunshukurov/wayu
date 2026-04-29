@@ -3,7 +3,7 @@ import {IQueryHandler, QueryHandler} from "@nestjs/cqrs";
 import {plainToInstance} from "class-transformer";
 import {CreateCountryResponse} from "../../commands/create-country/create-country.response";
 import {GetCountryByIdQuery} from "./get-country-by-id.query";
-import {CountriesEntity} from "@/features/content/countries/countries.entity";
+import {CountriesEntity} from "@/features/common/entities/countries.entity";
 
 @QueryHandler(GetCountryByIdQuery)
 export class GetCountryByIdHandler implements IQueryHandler<GetCountryByIdQuery> {

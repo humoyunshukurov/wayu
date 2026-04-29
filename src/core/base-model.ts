@@ -12,4 +12,7 @@ export class BaseModel extends BaseEntity{
     @UpdateDateColumn({type:"timestamp",nullable:true})
     updatedAt!:Date
 
+    @CreateDateColumn({type:"timestamp",nullable:true})
+    createdAt?:Date
+
 }

@@ -2,7 +2,7 @@ import {Column, Entity} from "typeorm";
 import {BaseModel} from "@/core/base-model";
 
 @Entity('socialLinks')
-export class SocialLinks extends BaseModel {
+export class SocialLinksEntity extends BaseModel {
     @Column({length:128})
     title!:string
 

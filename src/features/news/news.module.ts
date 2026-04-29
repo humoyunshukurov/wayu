@@ -11,6 +11,10 @@ import {GetAllNewsCategoriesHandler} from "@/features/news/news-category/queries
     providers: [
         GetAllNewsCategoriesHandler,
         CreateNewsCategoryHandler,
+
+
+
+
     ]
 })
 export class NewsModule {

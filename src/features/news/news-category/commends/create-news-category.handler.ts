@@ -3,7 +3,7 @@ import {ILike} from "typeorm";
 import {BadRequestException} from "@nestjs/common";
 import {plainToInstance} from "class-transformer";
 import {CommandHandler, ICommandHandler} from "@nestjs/cqrs";
-import {NewsCategory} from "@/features/news/news-category/news-category.entity";
+import {NewsCategory} from "@/features/common/entities/news-category.entity";
 import {CreateNewsCategoryCommand} from "@/features/news/news-category/commends/create-new-category.command";
 import {CreateNewsCategoryResponse} from "@/features/news/news-category/commends/create-news-category.response";
 

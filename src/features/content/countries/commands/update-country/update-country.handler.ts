@@ -4,7 +4,7 @@ import {plainToInstance} from "class-transformer";
 import {ILike, Not} from "typeorm";
 import {CreateCountryResponse} from "../create-country/create-country.response";
 import {UpdateCountryCommand} from "./update-country.command";
-import {CountriesEntity} from "@/features/content/countries/countries.entity";
+import {CountriesEntity} from "@/features/common/entities/countries.entity";
 
 @CommandHandler(UpdateCountryCommand)
 export class UpdateCountryHandler implements ICommandHandler<UpdateCountryCommand> {

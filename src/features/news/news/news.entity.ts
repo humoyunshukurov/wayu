@@ -1,11 +1,11 @@
 import {Column, Entity, ManyToOne} from 'typeorm';
 import type {Relation} from "typeorm";
 import {BaseModel} from '@/core/base-model';
-import {NewsCategory} from "@/features/news/news-category/news-category.entity";
-import {CountriesEntity} from "@/features/content/countries/countries.entity";
+import {NewsCategory} from "@/features/common/entities/news-category.entity";
+import {CountriesEntity} from "@/features/common/entities/countries.entity";
 
 @Entity('news')
-export class News extends BaseModel {
+export class NewsEntity extends BaseModel {
 
     @Column()
     categoryId!: number;

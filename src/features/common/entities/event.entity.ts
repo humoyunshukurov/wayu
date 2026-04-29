@@ -17,7 +17,7 @@ export class EventEntity extends BaseModel{
     @Column({length:128})
     image!:string
 
-    @Column({type:"datetime"})
+    @Column({type:"timestamp"})
     date!:Date;
 
     @Column({length:128})

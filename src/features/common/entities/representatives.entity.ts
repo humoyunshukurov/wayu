@@ -4,7 +4,7 @@ import type {Relation} from "typeorm";
 import {BranchesEntity} from "@/features/common/entities/branches.entity";
 
 @Entity('representatives')
-export class Representatives extends BaseModel{
+export class Representative extends BaseModel{
 
     @Column({length:64})
     fullName!:string;

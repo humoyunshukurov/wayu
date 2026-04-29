@@ -1,9 +1,9 @@
 import {Column, Entity, JoinColumn, ManyToOne} from "typeorm";
 import {BaseModel} from "@/core/base-model";
 
-import {Representatives} from "@/features/common/entities/representatives";
+import {Representative} from "@/features/common/entities/representatives.entity";
 import type {Relation} from "typeorm";
-import {CountriesEntity} from "@/features/content/countries/countries.entity";
+import {CountriesEntity} from "@/features/common/entities/countries.entity";
 
 @Entity('branches')
 export class BranchesEntity extends BaseModel{
@@ -26,7 +26,7 @@ export class BranchesEntity extends BaseModel{
     @JoinColumn({name:'countryId'})
     country!:Relation <CountriesEntity>
 
-    @ManyToOne(()=>Representatives,(representation)=>representation.branch)
+    @ManyToOne(()=>Representative,(representation)=>representation.branch)
     @JoinColumn({name:'representativeId'})
-    representative!:Relation <Representatives>
+    representative!:Relation <Representative>
 }

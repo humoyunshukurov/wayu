@@ -3,7 +3,7 @@ import {BaseModel} from "@/core/base-model";
 
 @Entity('newsTags')
 
-export class NewsTags extends BaseModel{
+export class NewsTagsEntity extends BaseModel{
     @Column({type:"int"})
     newsId!:number
 

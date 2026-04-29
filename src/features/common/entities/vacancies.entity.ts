@@ -1,11 +1,11 @@
 import {Column, Entity, OneToMany} from "typeorm";
 import {BaseModel} from "@/core/base-model";
 import {vacancyType} from "@/core/enums/enums";
-import {Applications} from "@/features/common/entities/applications";
+import {ApplicationsEntity} from "@/features/common/entities/applications.entity";
 import type {Relation} from "typeorm";
 
 @Entity('vacancies')
-export class Vacancies extends BaseModel{
+export class VacanciesEntity extends BaseModel{
 
     @Column({length:256})
     title!: string;
@@ -25,6 +25,6 @@ export class Vacancies extends BaseModel{
     @Column({type:"bool",default:true})
     isActive!:boolean
 
-    @OneToMany(()=>Applications,(application)=>application.vacancy)
-    applications!:Relation <Applications>
+    @OneToMany(()=>ApplicationsEntity,(application)=>application.vacancy)
+    applications!:Relation <ApplicationsEntity>
 }
