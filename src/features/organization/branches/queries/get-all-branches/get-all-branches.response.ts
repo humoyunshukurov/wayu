@@ -1,0 +1,28 @@
+import {ApiProperty} from "@nestjs/swagger";
+import {Expose} from "class-transformer";
+
+export class GetAllBranchesResponse {
+    @Expose()
+    @ApiProperty()
+    id!: number;
+
+    @Expose()
+    @ApiProperty()
+    countryId!: number;
+
+    @Expose()
+    @ApiProperty()
+    representativesId!: number;
+
+    @Expose()
+    @ApiProperty()
+    city!: string;
+
+    @Expose()
+    @ApiProperty()
+    latitude!: number;
+
+    @Expose()
+    @ApiProperty()
+    phoneNumber!: number;
+}
