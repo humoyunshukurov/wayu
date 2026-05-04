@@ -1,4 +1,4 @@
-import {Body, Controller, Delete, Get, Param, ParseIntPipe, Post, Put} from "@nestjs/common";
+import {Body, Controller, Delete, Get, Param, ParseIntPipe, Post, Patch} from "@nestjs/common";
 import {CommandBus, QueryBus} from "@nestjs/cqrs";
 import {ApiCreatedResponse, ApiOkResponse} from "@nestjs/swagger";
 import {CreateLanguageRequest} from "./commands/create-language/create-language.request";
@@ -7,6 +7,7 @@ import {UpdateLanguageCommand} from "./commands/update-language/update-language.
 import {UpdateLanguageRequest} from "./commands/update-language/update-language.request";
 import {DeleteLanguageCommand} from "./commands/delete-language/delete-language.command";
 import {GetAllLanguagesQuery} from "./queries/get-all-languages/get-all-languages.query";
+import {GetLanguageByIdQuery} from "./queries/get-language-by-id/get-language-by-id.query";
 
 @Controller('admin/languages')
 export class LanguagesController {
@@ -18,13 +19,19 @@ export class LanguagesController {
         return await this.queryBus.execute(new GetAllLanguagesQuery());
     }
 
+    @Get(':id')
+    @ApiOkResponse({type: CreateLanguageResponse})
+    async getById(@Param('id', ParseIntPipe) id: number) {
+        return await this.queryBus.execute(new GetLanguageByIdQuery(id));
+    }
+
     @Post()
     @ApiCreatedResponse({type: CreateLanguageResponse})
     async create(@Body() req: CreateLanguageRequest) {
         return await this.commandBus.execute(req.toCommand());
     }
 
-    @Put(':id')
+    @Patch(':id')
     @ApiOkResponse({type: CreateLanguageResponse})
     async update(@Param('id', ParseIntPipe) id: number, @Body() req: UpdateLanguageRequest) {
         const cmd = new UpdateLanguageCommand();

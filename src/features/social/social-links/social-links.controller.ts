@@ -1,4 +1,4 @@
-import {Body, Controller, Delete, Get, Param, ParseIntPipe, Post, Put} from "@nestjs/common";
+import {Body, Controller, Delete, Get, Param, ParseIntPipe, Post, Patch} from "@nestjs/common";
 import {CommandBus, QueryBus} from "@nestjs/cqrs";
 import {ApiCreatedResponse, ApiOkResponse} from "@nestjs/swagger";
 import {CreateSocialLinkRequest} from "./commands/create-social-link/create-social-link.request";
@@ -8,6 +8,7 @@ import {UpdateSocialLinkRequest} from "./commands/update-social-link/update-soci
 import {DeleteSocialLinkCommand} from "./commands/delete-social-link/delete-social-link.command";
 import {GetAllSocialLinksQuery} from "./queries/get-all-social-links/get-all-social-links.query";
 import {GetAllSocialLinksResponse} from "./queries/get-all-social-links/get-all-social-links.response";
+import {GetSocialLinkByIdQuery} from "./queries/get-social-link-by-id/get-social-link-by-id.query";
 
 @Controller('admin/social-links')
 export class SocialLinksController {
@@ -19,13 +20,19 @@ export class SocialLinksController {
         return await this.queryBus.execute(new GetAllSocialLinksQuery());
     }
 
+    @Get(':id')
+    @ApiOkResponse({type: CreateSocialLinkResponse})
+    async getById(@Param('id', ParseIntPipe) id: number) {
+        return await this.queryBus.execute(new GetSocialLinkByIdQuery(id));
+    }
+
     @Post()
     @ApiCreatedResponse({type: CreateSocialLinkResponse})
     async create(@Body() req: CreateSocialLinkRequest) {
         return await this.commandBus.execute(req.toCommand());
     }
 
-    @Put(':id')
+    @Patch(':id')
     @ApiOkResponse({type: CreateSocialLinkResponse})
     async update(@Param('id', ParseIntPipe) id: number, @Body() req: UpdateSocialLinkRequest) {
         const cmd = new UpdateSocialLinkCommand();

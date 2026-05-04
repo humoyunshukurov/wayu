@@ -1,4 +1,4 @@
-import {Body, Controller, Delete, Get, Param, ParseIntPipe, Post, Put, Query} from "@nestjs/common";
+import {Body, Controller, Delete, Get, Param, ParseIntPipe, Post, Patch, Query} from "@nestjs/common";
 import {CommandBus, QueryBus} from "@nestjs/cqrs";
 import {ApiCreatedResponse, ApiOkResponse} from "@nestjs/swagger";
 import {CreateExpenseRequest} from "./commands/create-expense/create-expense.request";
@@ -33,7 +33,7 @@ export class ExpensesController {
         return await this.commandBus.execute(req.toCommand());
     }
 
-    @Put(':id')
+    @Patch(':id')
     @ApiOkResponse({type: CreateExpenseResponse})
     async update(@Param('id', ParseIntPipe) id: number, @Body() req: UpdateExpenseRequest) {
         const cmd = new UpdateExpenseCommand();

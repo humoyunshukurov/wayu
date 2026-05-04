@@ -1,4 +1,4 @@
-import {Body, Controller, Delete, Get, Param, ParseIntPipe, Post, Put, Query} from "@nestjs/common";
+import {Body, Controller, Delete, Get, Param, ParseIntPipe, Post, Patch, Query} from "@nestjs/common";
 import {CommandBus, QueryBus} from "@nestjs/cqrs";
 import {ApiCreatedResponse, ApiOkResponse} from "@nestjs/swagger";
 import {CreateEventCategoryRequest} from "./commands/create-event-category/create-event-category.request";
@@ -33,7 +33,7 @@ export class EventCategoriesController {
         return await this.commandBus.execute(req.toCommand());
     }
 
-    @Put(':id')
+    @Patch(':id')
     @ApiOkResponse({type: CreateEventCategoryResponse})
     async update(@Param('id', ParseIntPipe) id: number, @Body() req: UpdateEventCategoryRequest) {
         const cmd = new UpdateEventCategoryCommand();

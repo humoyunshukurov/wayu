@@ -12,11 +12,13 @@ import {CreateLanguageHandler} from "./languages/commands/create-language/create
 import {UpdateLanguageHandler} from "./languages/commands/update-language/update-language.handler";
 import {DeleteLanguageHandler} from "./languages/commands/delete-language/delete-language.handler";
 import {GetAllLanguagesHandler} from "./languages/queries/get-all-languages/get-all-languages.handler";
+import {GetLanguageByIdHandler} from "./languages/queries/get-language-by-id/get-language-by-id.handler";
 import {TagsController} from "./tags/tags.controller";
 import {CreateTagHandler} from "./tags/commands/create-tag/create-tag.handler";
 import {UpdateTagHandler} from "./tags/commands/update-tag/update-tag.handler";
 import {DeleteTagHandler} from "./tags/commands/delete-tag/delete-tag.handler";
 import {GetAllTagsHandler} from "./tags/queries/get-all-tags/get-all-tags.handler";
+import {GetTagByIdHandler} from "./tags/queries/get-tag-by-id/get-tag-by-id.handler";
 
 @Module({
     imports: [CqrsModule],
@@ -31,10 +33,12 @@ import {GetAllTagsHandler} from "./tags/queries/get-all-tags/get-all-tags.handle
         UpdateLanguageHandler,
         DeleteLanguageHandler,
         GetAllLanguagesHandler,
+        GetLanguageByIdHandler,
         CreateTagHandler,
         UpdateTagHandler,
         DeleteTagHandler,
         GetAllTagsHandler,
+        GetTagByIdHandler,
     ],
 })
 export class SettingsModule {}

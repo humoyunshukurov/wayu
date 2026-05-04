@@ -1,4 +1,4 @@
-import {Body, Controller, Delete, Get, Param, ParseIntPipe, Post, Put, Query} from "@nestjs/common";
+import {Body, Controller, Delete, Get, Param, ParseIntPipe, Post, Patch, Query} from "@nestjs/common";
 import {CommandBus, QueryBus} from "@nestjs/cqrs";
 import {ApiCreatedResponse, ApiOkResponse} from "@nestjs/swagger";
 import {CreateNewsCategoryCommand} from "@/features/news/news-category/commends/create-new-category.command";
@@ -36,7 +36,7 @@ export class NewsCategoryController {
         return await this.commandBus.execute(command);
     }
 
-    @Put(':id')
+    @Patch(':id')
     @ApiOkResponse({type: CreateNewsCategoryResponse})
     async update(@Param('id', ParseIntPipe) id: number, @Body() req: UpdateNewsCategoryRequest) {
         const cmd = new UpdateNewsCategoryCommand();

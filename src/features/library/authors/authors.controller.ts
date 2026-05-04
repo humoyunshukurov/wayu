@@ -1,4 +1,4 @@
-import {Body, Controller, Delete, Get, Param, ParseIntPipe, Post, Put, Query} from "@nestjs/common";
+import {Body, Controller, Delete, Get, Param, ParseIntPipe, Post, Patch, Query} from "@nestjs/common";
 import {CommandBus, QueryBus} from "@nestjs/cqrs";
 import {ApiCreatedResponse, ApiOkResponse} from "@nestjs/swagger";
 import {CreateAuthorRequest} from "./commands/create-author/create-author.request";
@@ -33,7 +33,7 @@ export class AuthorsController {
         return await this.commandBus.execute(req.toCommand());
     }
 
-    @Put(':id')
+    @Patch(':id')
     @ApiOkResponse({type: CreateAuthorResponse})
     async update(@Param('id', ParseIntPipe) id: number, @Body() req: UpdateAuthorRequest) {
         const cmd = new UpdateAuthorCommand();

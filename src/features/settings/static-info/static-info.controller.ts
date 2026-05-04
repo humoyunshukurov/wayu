@@ -1,4 +1,4 @@
-import {Body, Controller, Get, Put} from "@nestjs/common";
+import {Body, Controller, Get, Patch} from "@nestjs/common";
 import {CommandBus, QueryBus} from "@nestjs/cqrs";
 import {ApiOkResponse} from "@nestjs/swagger";
 import {UpdateStaticInfoCommand} from "./commands/update-static-info/update-static-info.command";
@@ -16,7 +16,7 @@ export class StaticInfoController {
         return await this.queryBus.execute(new GetStaticInfoQuery());
     }
 
-    @Put()
+    @Patch()
     @ApiOkResponse({type: UpdateStaticInfoResponse})
     async update(@Body() req: UpdateStaticInfoRequest) {
         const cmd = new UpdateStaticInfoCommand();
