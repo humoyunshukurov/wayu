@@ -1,6 +1,6 @@
 import {ApiProperty} from "@nestjs/swagger";
 import {Type} from "class-transformer";
-import {IsDateString, IsInt, IsString, MaxLength} from "class-validator";
+import {Allow, IsDateString, IsInt, IsString, MaxLength} from "class-validator";
 import {CreateEventCommand} from "./create-event.command";
 
 export class CreateEventRequest {
@@ -13,9 +13,8 @@ export class CreateEventRequest {
     @ApiProperty()
     content!: string;
 
-    @IsString()
-    @MaxLength(128)
-    @ApiProperty()
+   @Allow()
+   @ApiProperty({type:"string",format:"binary"})
     image!: string;
 
     @IsDateString()

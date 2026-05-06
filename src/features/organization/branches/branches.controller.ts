@@ -39,9 +39,10 @@ export class BranchesController {
         const cmd = new UpdateBranchCommand();
         cmd.id = id;
         cmd.countryId = req.countryId;
-        cmd.representativesId = req.representativesId;
+        cmd.representativeId = req.representativeId;
         cmd.city = req.city;
         cmd.latitude = req.latitude;
+        cmd.longitude = req.longitude;
         cmd.phoneNumber = req.phoneNumber;
         return await this.commandBus.execute(cmd);
     }

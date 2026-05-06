@@ -12,7 +12,7 @@ export class CreateBranchResponse {
 
     @Expose()
     @ApiProperty()
-    representativesId!: number;
+    representativeId!: number;
 
     @Expose()
     @ApiProperty()
@@ -24,5 +24,9 @@ export class CreateBranchResponse {
 
     @Expose()
     @ApiProperty()
-    phoneNumber!: number;
+    longitude!: number;
+
+    @Expose()
+    @ApiProperty()
+    phoneNumber!: string;
 }

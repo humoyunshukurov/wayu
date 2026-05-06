@@ -14,7 +14,7 @@ export class ExpensesEntity extends BaseModel{
     @Column({length:256})
     title!:string
 
-    @Column({type:"text"})
+    @Column({type:"text",nullable:true})
     description!:string
 
     @Column({length:64,unique:true})

@@ -1,6 +1,5 @@
 import {Column, Entity, JoinColumn, ManyToOne} from "typeorm";
 import {BaseModel} from "@/core/base-model";
-
 import {Representative} from "@/features/common/entities/representatives.entity";
 import type {Relation} from "typeorm";
 import {CountriesEntity} from "@/features/common/entities/countries.entity";
@@ -11,7 +10,7 @@ export class BranchesEntity extends BaseModel{
     countryId!:number
 
     @Column({type:"int"})
-    representativesId!:number
+    representativeId!:number
 
     @Column({length:64})
     city!:string
@@ -20,7 +19,10 @@ export class BranchesEntity extends BaseModel{
     latitude!:number
 
     @Column({type:"decimal",precision:10, scale:7})
-    phoneNumber!:number
+    longitude!:number
+
+    @Column({length:16})
+    phoneNumber!:string
 
     @ManyToOne(()=>CountriesEntity,(country)=>country.branch)
     @JoinColumn({name:'countryId'})

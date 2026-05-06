@@ -16,13 +16,14 @@ export class UpdateBranchHandler implements ICommandHandler<UpdateBranchCommand>
         const countryExists = await CountriesEntity.existsBy({id: command.countryId});
         if (!countryExists) throw new BadRequestException("country not found");
 
-        const representativeExists = await Representative.existsBy({id: command.representativesId});
+        const representativeExists = await Representative.existsBy({id: command.representativeId});
         if (!representativeExists) throw new BadRequestException("representative not found");
 
         entity.countryId = command.countryId;
-        entity.representativesId = command.representativesId;
+        entity.representativeId = command.representativeId;
         entity.city = command.city;
         entity.latitude = command.latitude;
+        entity.longitude = command.longitude;
         entity.phoneNumber = command.phoneNumber;
         await BranchesEntity.save(entity);
 

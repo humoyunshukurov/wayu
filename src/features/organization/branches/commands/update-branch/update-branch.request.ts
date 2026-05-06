@@ -11,7 +11,7 @@ export class UpdateBranchRequest {
     @IsInt()
     @Type(() => Number)
     @ApiProperty()
-    representativesId!: number;
+    representativeId!: number;
 
     @IsString()
     @MaxLength(64)
@@ -26,5 +26,10 @@ export class UpdateBranchRequest {
     @IsNumber()
     @Type(() => Number)
     @ApiProperty()
-    phoneNumber!: number;
+    longitude!: number;
+
+    @IsString()
+    @MaxLength(16)
+    @ApiProperty()
+    phoneNumber!: string;
 }

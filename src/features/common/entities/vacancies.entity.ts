@@ -19,6 +19,9 @@ export class VacanciesEntity extends BaseModel{
     @Column({type:"enum",enum:vacancyType})
     type!:vacancyType
 
+    @Column({length:16})
+    phoneNumber!: string;
+
     @Column({length:64})
     salary!: string;
 

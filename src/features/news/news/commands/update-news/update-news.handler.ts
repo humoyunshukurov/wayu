@@ -16,12 +16,17 @@ export class UpdateNewsHandler implements ICommandHandler<UpdateNewsCommand> {
         const categoryExists = await NewsCategory.existsBy({id: command.categoryId});
         if (!categoryExists) throw new BadRequestException("news category not found");
 
-        const countryExists = await CountriesEntity.existsBy({id: command.countryId});
-        if (!countryExists) throw new BadRequestException("country not found");
+        if (command.countryId) {
+            const countryExists = await CountriesEntity.existsBy({id: command.countryId});
+            if (!countryExists) throw new BadRequestException("country not found");
+        }
 
         entity.categoryId = command.categoryId;
-        entity.countryId = command.countryId;
+        entity.countryId = command.countryId as any;
         entity.title = command.title;
+        if (command.image) entity.image = command.image;
+        entity.date = command.date as any;
+        entity.content = command.content;
         await NewsEntity.save(entity);
 
         return plainToInstance(CreateNewsResponse, entity, {excludeExtraneousValues: true});

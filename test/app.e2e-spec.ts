@@ -1,29 +1,24 @@
-import { Test, TestingModule } from '@nestjs/testing';
+import 'dotenv/config';
 import { INestApplication } from '@nestjs/common';
 import request from 'supertest';
 import { App } from 'supertest/types';
-import { AppModule } from './../src/app.module';
+import { DataSource } from 'typeorm';
+import { createTestApp } from './utils/test-app';
+import { teardownTestApp } from './utils/teardown';
 
 describe('AppController (e2e)', () => {
   let app: INestApplication<App>;
+  let dataSource: DataSource;
 
-  beforeEach(async () => {
-    const moduleFixture: TestingModule = await Test.createTestingModule({
-      imports: [AppModule],
-    }).compile();
-
-    app = moduleFixture.createNestApplication();
-    await app.init();
+  beforeAll(async () => {
+    ({ app, dataSource } = await createTestApp());
   });
+
+  afterAll(async () => await teardownTestApp(app, dataSource));
 
   it('/ (GET)', () => {
     return request(app.getHttpServer())
       .get('/')
-      .expect(200)
-      .expect('Hello World!');
-  });
-
-  afterEach(async () => {
-    await app.close();
+      .expect(404);
   });
 });

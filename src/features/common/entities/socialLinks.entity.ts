@@ -3,7 +3,7 @@ import {BaseModel} from "@/core/base-model";
 
 @Entity('socialLinks')
 export class SocialLinksEntity extends BaseModel {
-    @Column({length:128})
+    @Column({length:64})
     title!:string
 
     @Column({length:128})

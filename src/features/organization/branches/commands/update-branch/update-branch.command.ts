@@ -1,8 +1,9 @@
 export class UpdateBranchCommand {
     id!: number;
     countryId!: number;
-    representativesId!: number;
+    representativeId!: number;
     city!: string;
     latitude!: number;
-    phoneNumber!: number;
+    longitude!: number;
+    phoneNumber!: string;
 }

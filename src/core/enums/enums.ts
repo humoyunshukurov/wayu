@@ -22,3 +22,14 @@ export enum applicationStatus{
     accepted='accepted',
     rejected='rejected',
 }
+
+export enum loginType{
+    email='email',
+    phone='phone',
+    google='google',
+}
+
+export enum userRole{
+    admin='admin',
+    user='user',
+}

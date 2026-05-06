@@ -12,7 +12,7 @@ export class CreateBranchRequest {
     @IsInt()
     @Type(() => Number)
     @ApiProperty()
-    representativesId!: number;
+    representativeId!: number;
 
     @IsString()
     @MaxLength(64)
@@ -27,14 +27,20 @@ export class CreateBranchRequest {
     @IsNumber()
     @Type(() => Number)
     @ApiProperty()
-    phoneNumber!: number;
+    longitude!: number;
+
+    @IsString()
+    @MaxLength(16)
+    @ApiProperty()
+    phoneNumber!: string;
 
     toCommand(): CreateBranchCommand {
         const cmd = new CreateBranchCommand();
         cmd.countryId = this.countryId;
-        cmd.representativesId = this.representativesId;
+        cmd.representativeId = this.representativeId;
         cmd.city = this.city;
         cmd.latitude = this.latitude;
+        cmd.longitude = this.longitude;
         cmd.phoneNumber = this.phoneNumber;
         return cmd;
     }

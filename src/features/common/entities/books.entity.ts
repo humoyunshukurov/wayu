@@ -14,7 +14,7 @@ export class BooksEntity extends BaseModel{
     @Column({type:"int"})
     categoryId!: number
 
-    @Column({length:265})
+    @Column({length:256})
     title: string
 
     @Column({length:128})
@@ -38,6 +38,6 @@ export class BooksEntity extends BaseModel{
     authors:Relation <AuthorsEntity>
 
     @ManyToOne(()=>BookCategoriesEntity,(category)=>category.books)
-    @JoinColumn({name:'CategoryId'})
+    @JoinColumn({name:'categoryId'})
     category:Relation <BookCategoriesEntity>
 }

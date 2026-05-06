@@ -13,7 +13,7 @@ export class FaqsTagsEntity extends BaseModel {
     tagId!: number;
 
     @ManyToOne(() => FaqsEntity, (faq) => faq.faqTags)
-    @JoinColumn({name: 'faqId'})
+    @JoinColumn({name: 'faqsId'})
     faqs: Relation<FaqsEntity>
 
     @ManyToOne(() => TagsEntity, (tag) => tag.faqtags)

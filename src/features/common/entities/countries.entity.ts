@@ -6,7 +6,7 @@ import type {Relation} from "typeorm";
 import {BaseModel} from "@/core/base-model";
 
 
-@Entity('socialLinks')
+@Entity('countries')
 export class CountriesEntity extends BaseModel{
     @Column({length:64,unique:true})
     title!:string

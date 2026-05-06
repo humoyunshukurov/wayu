@@ -11,10 +11,22 @@ export class CreateNewsResponse {
     categoryId!: number;
 
     @Expose()
-    @ApiProperty()
+    @ApiProperty({nullable: true})
     countryId!: number;
 
     @Expose()
     @ApiProperty()
     title!: string;
+
+    @Expose()
+    @ApiProperty()
+    image!: string;
+
+    @Expose()
+    @ApiProperty()
+    date!: Date;
+
+    @Expose()
+    @ApiProperty()
+    content!: string;
 }

@@ -1,6 +1,11 @@
-import {Body, Controller, Delete, Get, Param, ParseIntPipe, Post, Patch, Query} from "@nestjs/common";
+import {
+    Body, Controller, Delete, Get, Param, ParseIntPipe,
+    Post, Patch, Query, UploadedFile, UseInterceptors,
+    BadRequestException,
+} from "@nestjs/common";
+import {FileInterceptor} from "@nestjs/platform-express";
 import {CommandBus, QueryBus} from "@nestjs/cqrs";
-import {ApiCreatedResponse, ApiOkResponse} from "@nestjs/swagger";
+import {ApiConsumes, ApiCreatedResponse, ApiOkResponse} from "@nestjs/swagger";
 import {CreateNewsRequest} from "./commands/create-news/create-news.request";
 import {CreateNewsResponse} from "./commands/create-news/create-news.response";
 import {UpdateNewsCommand} from "./commands/update-news/update-news.command";
@@ -10,6 +15,7 @@ import {GetAllNewsFilters} from "./queries/get-all-news/get-all-news.filters";
 import {GetAllNewsQuery} from "./queries/get-all-news/get-all-news.query";
 import {GetAllNewsResponse} from "./queries/get-all-news/get-all-news.response";
 import {GetNewsByIdQuery} from "./queries/get-news-by-id/get-news-by-id.query";
+import {imageStorage, imageFilter} from "@/core/upload.util";
 
 @Controller('admin/news')
 export class NewsController {
@@ -28,19 +34,34 @@ export class NewsController {
     }
 
     @Post()
+    @ApiConsumes('multipart/form-data')
     @ApiCreatedResponse({type: CreateNewsResponse})
-    async create(@Body() req: CreateNewsRequest) {
-        return await this.commandBus.execute(req.toCommand());
+    @UseInterceptors(FileInterceptor('image', {storage: imageStorage('news'), fileFilter: imageFilter}))
+    async create(
+        @Body() req: CreateNewsRequest,
+        @UploadedFile() image: Express.Multer.File,
+    ) {
+        if (!image) throw new BadRequestException('image is required');
+        return await this.commandBus.execute(req.toCommand(image.path));
     }
 
     @Patch(':id')
+    @ApiConsumes('multipart/form-data')
     @ApiOkResponse({type: CreateNewsResponse})
-    async update(@Param('id', ParseIntPipe) id: number, @Body() req: UpdateNewsRequest) {
+    @UseInterceptors(FileInterceptor('image', {storage: imageStorage('news'), fileFilter: imageFilter}))
+    async update(
+        @Param('id', ParseIntPipe) id: number,
+        @Body() req: UpdateNewsRequest,
+        @UploadedFile() image?: Express.Multer.File,
+    ) {
         const cmd = new UpdateNewsCommand();
         cmd.id = id;
         cmd.categoryId = req.categoryId;
-        cmd.countryId = req.countryId;
+        cmd.countryId = req.countryId ?? null;
         cmd.title = req.title;
+        cmd.date = req.date;
+        cmd.content = req.content;
+        if (image) cmd.image = image.path;
         return await this.commandBus.execute(cmd);
     }
 

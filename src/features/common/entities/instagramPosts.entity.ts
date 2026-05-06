@@ -3,7 +3,7 @@ import {BaseModel} from "@/core/base-model";
 
 @Entity('instagramPosts')
 export class InstagramPostsEntity extends BaseModel{
-    @Column({length:128})
+    @Column({length:256})
     image!:string;
 
     @Column({length:128})

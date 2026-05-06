@@ -13,14 +13,15 @@ export class CreateBranchHandler implements ICommandHandler<CreateBranchCommand>
         const countryExists = await CountriesEntity.existsBy({id: command.countryId});
         if (!countryExists) throw new BadRequestException("country not found");
 
-        const representativeExists = await Representative.existsBy({id: command.representativesId});
+        const representativeExists = await Representative.existsBy({id: command.representativeId});
         if (!representativeExists) throw new BadRequestException("representative not found");
 
         const entity = BranchesEntity.create({
             countryId: command.countryId,
-            representativesId: command.representativesId,
+            representativeId: command.representativeId,
             city: command.city,
             latitude: command.latitude,
+            longitude: command.longitude,
             phoneNumber: command.phoneNumber,
         } as BranchesEntity);
         await BranchesEntity.save(entity);
